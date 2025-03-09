@@ -1,6 +1,8 @@
+# Token Exchange
+
 ## Keycloak Setup
 
-#### Step:1 Enable token exchange feature
+#### Step-1: Enable token exchange feature
 
 ![alt text](images/token-exchange-enable-keycloak.png)
 
@@ -33,9 +35,13 @@ services:
     restart: unless-stopped
 ```
 
-#### Step:2 Create 2 Roles: Admin, User
+#### Step-2: Create Roles: Admin, User
 
-#### Step:3 Create users with Admin role and User role
+Assign the **realm-admin** and **uma_protection** roles to the **admin** role to enable token exchange for the admin user.
+
+![alt text](images/associated-admin-role.png)
+
+#### Step-3: Create users with Admin role and User role
 
 ```
 username: admin@gmail.com
@@ -45,7 +51,7 @@ username: shivampatelce@gmail.com
 role: User
 ```
 
-#### Step:4 Disable lightweight access token feature
+#### Step-4: Disable lightweight access token feature
 
 Lightweight access token feature prevents the inclusion of roles in the access token during token exchange.
 
@@ -58,7 +64,7 @@ Lightweight access token feature prevents the inclusion of roles in the access t
 
 ## Backend setup
 
-#### Step:1 Created end point for token exchange, which accept user-id as a path variable and admin token as a Authorization header.
+#### Step-1: Created end point for token exchange, which accept user-id as a path variable and admin token as a Authorization header.
 
 ```java
 
@@ -72,7 +78,7 @@ Lightweight access token feature prevents the inclusion of roles in the access t
 
 ```
 
-#### Step:2 Logic for token exchange
+#### Step-2: Logic for token exchange
 
 Here we need admin-cli client id and secret.
 
@@ -100,7 +106,7 @@ Here we need admin-cli client id and secret.
 
 ## How I tested the token exchange flow
 
-#### Step:1 Obtained an admin token using admin user credentials.
+#### Step-1: Obtained an admin token using admin user credentials.
 
 ![alt text](images/admin-token.png)
 
@@ -119,7 +125,7 @@ Payload:
 
 ```
 
-#### Step:2 Using the user ID of shivampatelce@gmail.com ('226c47d8-d302-40cb-bfee-3e176bbfa28f' in my case) and the admin's access token, I obtained an access token for shivampatelce@gmail.com.
+#### Step-2: Using the user ID of shivampatelce@gmail.com ('226c47d8-d302-40cb-bfee-3e176bbfa28f' in my case) and the admin's access token, I obtained an access token for shivampatelce@gmail.com.
 
 ![alt text](images/token-exchange-api.png)
 
